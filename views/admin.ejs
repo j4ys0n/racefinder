@@ -12,7 +12,28 @@
     <body class="on-load-ask-server" data-action="getRaces({
         url: '/api/races/1' })">
         <h1>Racefinder!</h1>
-        <input type="text" class="endPoint" value="/events/Road-Race/Northeast/?ne=50"/>
+        <div class="inputs">
+            <input type="text" class="endPoint" value="/events?et=1&ne=50&dist=500&zip=10002"/>
+            <form id="bikeregForm">
+                <select class="raceType" id="ctl00$ContentPlaceHolder1$cboType" name="ctl00$ContentPlaceHolder1$cboType">
+                    <option value="1">Road</option>
+                    <option value="2">CX</option>
+                    <option value="3">MTB</option>
+                    <option value="6">Track</option>
+                </select>
+                <input type="text" class="zip" value="10002" id="ctl00$ContentPlaceHolder1$txtZip" name="ctl00$ContentPlaceHolder1$txtZip"/>
+                <input type="text" class="miles" value="500" id="ctl00$ContentPlaceHolder1$numMiles" name="ctl00$ContentPlaceHolder1$numMiles"/>
+                <input type="text" class="page" value="2" id="ctl00$ContentPlaceHolder1$hiddenCurrentPage" name="ctl00$ContentPlaceHolder1$hiddenCurrentPage"/>
+                <input type="hidden" value="50" id="ctl00$ContentPlaceHolder1$ddlPageSize" name="ctl00$ContentPlaceHolder1$ddlPageSize"/>
+                <input type="hidden" value="ctl00$ContentPlaceHolder1$ctl00$ContentPlaceHolder1$pnlResultsPanel|ctl00$ContentPlaceHolder1$rptPager$ctl01$pagerButton" id="ctl00$ScriptManager1" name="ctl00$ScriptManager1"/>
+                <input type="hidden" value=";;AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e:en-US:ee051b62-9cd6-49a5-87bb-93c07bc43d63:ea597d4b:b25378d2;Telerik.Web.UI, Version=2012.2.912.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4:en-US:6aabe639-e731-432d-8e00-1a2e36f6eee0:16e4e7cd:874f8ea2:f7645509:24ee1bba:f46195d3:19620875:490a9d4e:bd8f85e4:ed16cbdc:b7778d6c:e085fe68:39040b5c;AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e:en-US:ee051b62-9cd6-49a5-87bb-93c07bc43d63:853c2e0b:923aa3cc:46f97eb1:782b16ab:50114f04:29340eb0:8d52b8e7" id="ctl00_ScriptManager1_TSM" name="ctl00_ScriptManager1_TSM"/>
+                <input type="hidden" value="ctl00$ContentPlaceHolder1$rptPager$ctl01$pagerButton" id="__EVENTTARGET" name="__EVENTTARGET"/>
+                <input type="hidden" value="l" id="ctl00$DropDownListUserType" name="ctl00$DropDownListUserType"/>
+                <input type="hidden" value="1" id="hiddenInputToUpdateATBuffer_CommonToolkitScripts" name="hiddenInputToUpdateATBuffer_CommonToolkitScripts"/>
+                <input type="hidden" value="true" id="__ASYNCPOST" name="__ASYNCPOST"/>
+                <input type="hidden" value="" id="ctl00_ContentPlaceHolder1_numMiles_ClientState" name="ctl00_ContentPlaceHolder1_numMiles_ClientState"/>
+            </form>
+        </div>
         <div class="results">
             Races Returned: <span class="returned">0</span>&nbsp;&nbsp;
             Unique: <span class="unique">0</span>&nbsp;&nbsp;
@@ -23,7 +44,7 @@
         <div class="map-canvas"></div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script type="text/javascript"
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBCjwHqE-SQcG0lTn6KBSd4dXacI-tOo&sensor=true"></script>
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuS_AXBjFep-g23GTsUeFkNEeloKzAvmU&sensor=true"></script>
         <script src="public/Includes/scripts/AppGlobal.js"></script>
         <script src="public/Includes/scripts/Scrape.js"></script>
         <script src="public/Includes/scripts/Map.js"></script>

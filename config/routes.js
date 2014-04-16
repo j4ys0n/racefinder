@@ -13,6 +13,8 @@ module.exports = function(app) {
   app.post( '/api/race/:id', race.updateRace );
   app.del( '/api/race/:id', race.deleteRace );
   app.get( '/api/races/status/:status', race.findRacesByStatus );
+  app.get( '/api/races/type/:type', race.findRacesByType );
+  app.get( '/api/races/date/:type/:start/:end', race.findRacesByDates );
   app.get( '/api/races', race.readRaces );
   app.del( '/api/races', race.deleteAllRaces );
 

@@ -160,7 +160,7 @@ if ( !$url ) {
   $ch = curl_init( $url );
 
   if ( strtolower($_SERVER['REQUEST_METHOD']) == 'post' ) {
-    curl_setopt( $ch, CURLOPT_POST, true );
+    curl_setopt( $ch, CURLOPT_POST, 1 );
     curl_setopt( $ch, CURLOPT_POSTFIELDS, $_POST );
   }
   /*

@@ -11,6 +11,7 @@
             doc = $(document),
             site,
             endPoint,
+            raceType = 0,
             page = 1,
             racesReturned = 0,
             racesUnique = 0,
@@ -211,6 +212,7 @@
                 item.race_date = monthStrToNum(month)+'/'+day+'/'+year;
                 item.location = location;
                 item.link = link;
+                item.race_type = $('.raceType').val();
 
                 checkUnique( item );
                 //saveRace( item );
@@ -219,19 +221,26 @@
         }
 
         function getPage(){
-            var url = 'http://'+w.location.hostname+':8001/Includes/scripts/proxy.php?url='+site+endPoint;
-            $.getJSON( url, function(data){
-                var res = data.contents,
-                    start = -1,
-                    end = -1;
-                start = res.indexOf('<div id="'+oOptions.targetContentStart+'"');
-                end = res.indexOf('<div id="'+oOptions.targetContentStop+'"')
-                //start = res.match( '<div id=\\"ctl00_ContentPlaceHolder1_pnlResults\\" \\b[^>]*>' );
-                res = $(res.substring( start, end ));
-                formatData( res );
-                //enable button
-                $( oOptions.watch.getDataBtnClass ).text( oOptions.copy.getDataBtn ).removeAttr('disabled');
-            } )
+            var url = 'http://'+w.location.hostname+':8001/Includes/scripts/proxy.php?url='+encodeURIComponent(site+endPoint);
+            $.ajax({
+                dataType: 'json',
+                url: url,
+                type: 'POST',
+                data: $('#bikeregForm').serialize(),
+                success: function(data){
+                    var res = data.contents,
+                        start = -1,
+                        end = -1;
+                    start = res.indexOf('<div id="'+oOptions.targetContentStart+'"');
+                    end = res.indexOf('<div id="'+oOptions.targetContentStop+'"')
+                    //start = res.match( '<div id=\\"ctl00_ContentPlaceHolder1_pnlResults\\" \\b[^>]*>' );
+                    res = $(res.substring( start, end ));
+                    console.log(res);
+                    formatData( res );
+                    //enable button
+                    $( oOptions.watch.getDataBtnClass ).text( oOptions.copy.getDataBtn ).removeAttr('disabled');
+                }
+            })
             .fail( function( jqXHR, status, error ){
                 console.log(jqXHR)
             });
@@ -252,8 +261,10 @@
 
         doc.delegate( oOptions.watch.getDataBtnClass, clickEvt, function( e ){
             endPoint = $( oOptions.watch.endPointInputClass ).val();
+            $('#ctl00_ContentPlaceHolder1_numMiles_ClientState').val( {'enabled': true, 'emptyMessage': 'miles', 'validationText': '"'+$('.miles').val()+'"', 'valueAsString': '"'+$('.miles').val()+'"','minValue':-70368744177664,'maxValue':70368744177664} )
             getPage();
             $( this ).text( oOptions.copy.working ).attr( 'disabled', 'disabled' );
+            console.log( decodeURIComponent($('#bikeregForm').serialize()) );
         })
         .delegate( oOptions.watch.endPointInputClass, 'keydown', function( e ){
             if( e.keyCode === 13 ){

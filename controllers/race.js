@@ -33,7 +33,7 @@ module.exports = {
         var limit = 20;
         var offset = ( page - 1 ) * limit;
 
-        Race.find()
+        Race.find({ 'race_date': { '$gte': new Date() } })
             //.skip( offset )
             //.limit( limit )
             .exec( function( err, races ){
@@ -45,7 +45,28 @@ module.exports = {
         var status = decodeURIComponent( req.params.status );
         Race.find( { 'status': status } ).exec( function( err, race ){
             res.json( Response.code( err, race ), Response.data( err, race ) );
-        })
+        });
+    },
+
+    findRacesByType: function( req, res ){
+        var t = decodeURIComponent( req.params.type );
+        Race.find( { 'race_type': t, 'race_date': { '$gte': new Date() } } )
+            .exec( function( err, race ){
+            res.json( Response.code( err, race ), Response.data( err, race ) );
+        });
+    },
+
+    findRacesByDates: function( req, res ){
+        var t = decodeURIComponent( req.params.type ),
+            s = new Date(decodeURIComponent( req.params.start )),
+            e = new Date(decodeURIComponent( req.params.end ));
+
+            console.log(s, e)
+
+        Race.find( { 'race_type': t, 'race_date': { '$gte': s, '$lt': e } } )
+            .exec( function( err, race ){
+            res.json( Response.code( err, race ), Response.data( err, race ) );
+        });
     },
 
     updateRace: function( req, res ){
@@ -55,7 +76,7 @@ module.exports = {
             $push: {}
         };
         var updateMap = {
-            $set: ['name', 'race_date', 'reg_open_date',
+            $set: ['name', 'race_type', 'race_date', 'reg_open_date',
                 'reg_close_date', 'location', 'location_lat',
                 'location_long', 'link', 'create_date', 'status']
         }

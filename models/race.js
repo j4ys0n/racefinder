@@ -13,6 +13,7 @@ var urlify = require( 'urlify' ).create({
  */
 var RaceSchema = new Schema({
     name: { type: String, default: '' },
+    race_type: { type: Number, default: 0 },
     race_date: { type: Date },
     reg_open_date: { type: Date },
     reg_close_date: { type: Date },

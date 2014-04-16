@@ -51,8 +51,8 @@
 		} );*/
 	} );
 
-	c.addAction( 'getRaces', function( param ){
-		c.m.getRaces();
+	c.addAction( 'getRaces', function( params ){
+		c.m.getRaces(params.url);
 	})
 
 	doc.ready(function(){
@@ -73,6 +73,20 @@
 		if( onLoadClass.length ){
 			$( this.document.body ).callAction();
 		}
+		var dt = new Date()
+		$('.dateStart').val( (dt.getMonth()+1)+'/'+dt.getDate()+'/'+(dt.getYear()-100)  );
+		$('.dateEnd').val('12/31/14');
+		$('.datePicker').datepicker();
+
+		$('.searchBtn').on('click', function( e ){
+			e.preventDefault();
+			var s = encodeURIComponent($('.dateStart').val()),
+				e = encodeURIComponent($('.dateEnd').val());
+			c.m.removeMarkers();
+			c.m.getRaces( '/api/races/date/1/'+s+'/'+e );
+
+		})
+
 	});
 
 	w.c = c;

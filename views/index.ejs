@@ -6,19 +6,25 @@
 
         <title>RaceFinder.bike</title>
 
-        <link href="public/Includes/css/styles.css" media="all" rel="stylesheet" type="text/css" />
-
+        <link href="public/Includes/css/styles.css" media="all" rel="stylesheet" type="text/css">
+        <link href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" media="all" rel="stylesheet" type="text/css">
     </head>
     <body class="on-load-ask-server" data-action="getRaces({
-            url: '/api/races/1' })">
+            url: /api/races/status/1 })">
         <div class="container">
             <div class="content">
+                <div class="controls">
+                    <input type="text" class="dateStart datePicker"/>
+                    <input type="text" class="dateEnd datePicker"/>
+                    <button class="searchBtn">Search</button>
+                </div>
                 <div class="map-canvas"></div>
             </div>
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <script type="text/javascript"
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBCjwHqE-SQcG0lTn6KBSd4dXacI-tOo&sensor=true"></script>
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuS_AXBjFep-g23GTsUeFkNEeloKzAvmU&sensor=true"></script>
         <script src="public/Includes/scripts/AppGlobal.js"></script>
         <script src="public/Includes/scripts/Scrape.js"></script>
         <script src="public/Includes/scripts/Map.js"></script>

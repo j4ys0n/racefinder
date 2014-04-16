@@ -12,7 +12,8 @@
 			html = $('html'),
 			apiKey = 'AIzaSyAuS_AXBjFep-g23GTsUeFkNEeloKzAvmU',
 			mapOptions,
-			map;
+			map,
+			markers = [];
 		this.oDefaults = {
 			contentType: 'application/json; charset=utf-8',
 			mapCanvasClass: '.map-canvas'
@@ -37,40 +38,64 @@
 		}
 
 		//helpers
+		function removeMarkers(){
+			var i = 0;
+			for( i; i < markers.length; i++ ){
+				markers[i].setMap(null);
+			}
+		}
+
 		function addMarker( x ){
+			var draggable = true;
 			var marker = new google.maps.Marker({
 				map: map,
+				draggable: draggable,
     			//animation: google.maps.Animation.DROP,
 				position: new google.maps.LatLng( x.location_lat, x.location_long ),
 				title: x.name
 			});
 			var dt = new Date(x.race_date);
 			var markerInfo = '<div class="markerInfo"><a href="'+x.link+'" target="_blank">'+x.name+'</a><br/>'
-								+'<h3 style="display: inline-block;">'+dt.getMonth()+'/'+dt.getDate()+'/'+dt.getUTCFullYear()+'</h3>&nbsp;&nbsp;'
+								+'<h3 style="display: inline-block;">'+(dt.getMonth()+1)+'/'+dt.getDate()+'/'+dt.getUTCFullYear()+'</h3>&nbsp;&nbsp;'
 								+'<h4 style="display: inline-block;">'+x.location+'</h4></div>';
 			var infowindow = new google.maps.InfoWindow({
 			    content: markerInfo
 			});
-			google.maps.event.addListener(marker, 'click', function() {
-				infowindow.open(map,marker);
+			google.maps.event.addListener( marker, 'click', function() {
+				infowindow.open( map, marker );
 			});
+			if( draggable ){
+				google.maps.event.addListener( marker, 'dragend', function( e ){
+					//console.log( e.latLng.lat(), e.latLng.lng() );
+					$.ajax({
+						contentType: oOptions.contentType,
+						url: '/api/race/'+x._id,
+						type: 'POST',
+						data: JSON.stringify({'location_lat': e.latLng.lat(), 'location_long': e.latLng.lng() }),
+						success: function( e ){
+							console.log('success', e );
+						}
+					})
+				})
+			}
+			markers.push( marker );
 		}
 
 		function addRaces( res ){
 			res = res.data;
 			var i = 0;
 			for( i; i < res.length; i++ ){
-				var interval = 75*i;
+				//var interval = 75*i;
 				//setTimeout( function(){
 					addMarker( res[i] );
 				//}, interval );
 			}
 		}
 
-		function getRaces(){
+		function getRaces( url ){
 			$.ajax({
 				contentType: oOptions.contentType,
-				url: '/api/races/status/1',
+				url: url,
 				type: 'GET',
 				success: addRaces
 			})
@@ -84,6 +109,7 @@
 			init: init,
 			getRaces: getRaces,
 			addMarker: addMarker,
+			removeMarkers: removeMarkers,
 			geocoder: new google.maps.Geocoder()
 		};
 	};
