@@ -76,19 +76,12 @@
 			}
 			return obj.nodeName.toLowerCase();
 		},
-		features: {
-			touchend: function(){
-				var elm = document.createElement('div'),
-					t = elm.ontouchend;
-				if( t === undefined ){
+		feature: {
+			test: function( feature ){
+				if( w[feature] === undefined ){
 					return false;
 				}
 				return true;
-			}
-		},
-		feature: {
-			test: function( feature ){
-				return proto.features[ feature ]();
 			}
 		}
 	};

@@ -17,7 +17,7 @@
 
 	c.addAction( 'getRaceRSS', function( param ){
 
-
+		//c.s.init( 'http://bikereg.com' );
 
 		//console.log( 'http://www.bikereg.com/events/rssfeed.asp?et=1&rg=0&ns=&ne=50&pid=&states=' );
 		/*c.askServer({
@@ -51,9 +51,14 @@
 		} );*/
 	} );
 
+	c.addAction( 'getRaces', function( param ){
+		c.m.getRaces();
+	})
+
 	doc.ready(function(){
-		//c.m.init();
+		c.m.init();
 		c.s.init( 'http://bikereg.com' )
+
 	})
 
 	//listening
