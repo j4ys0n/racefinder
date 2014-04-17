@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, minimum-scale=0.5, maximum-scale=1, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
 
-        <title>RaceFinder.bike</title>
+        <title>racefinder.bike</title>
 
         <link href="public/Includes/css/styles.css" media="all" rel="stylesheet" type="text/css">
         <link href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" media="all" rel="stylesheet" type="text/css">
@@ -13,10 +13,13 @@
             url: /api/races/date/1/4%2F16%2F14/06%2F01%2F2014 })">
         <div class="container">
             <div class="content">
-                <div class="controls">
-                    <input type="text" class="dateStart datePicker"/>
-                    <input type="text" class="dateEnd datePicker"/>
-                    <button class="searchBtn">Search</button>
+                <div class="header">
+                    <img class="logo" src="/public/Includes/images/logo.jpg" height="50"/>
+                    <div class="controls">
+                        <input type="text" class="dateStart datePicker"/>
+                        <input type="text" class="dateEnd datePicker"/>
+                        <button class="searchBtn">Search</button>
+                    </div>
                 </div>
                 <div class="map-canvas"></div>
             </div>
