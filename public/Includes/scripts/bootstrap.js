@@ -76,7 +76,7 @@
 		var dt = new Date()
 		$('.dateStart').val( (dt.getMonth()+1)+'/'+dt.getDate()+'/'+(dt.getYear()-100)  );
 		$('.dateEnd').val('12/31/14');
-		//$('.datePicker').datepicker();
+		$('.datePicker').datepicker();
 
 		$('.searchBtn').on('click', function( e ){
 			e.preventDefault();
