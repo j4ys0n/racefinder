@@ -42,3 +42,11 @@ h1 {
     height: 30px;
     margin-left: 10px;
     margin-top: 15px; }
+.container .content .anchor {
+  font-size: 10px;
+  width: 100px;
+  height: 20px;
+  position: fixed;
+  top: 15px;
+  right: 10px;
+  z-index: 100; }
