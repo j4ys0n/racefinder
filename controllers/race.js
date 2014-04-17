@@ -1,6 +1,6 @@
 var mongoose = require( 'mongoose' );
 var Race = mongoose.model( 'Race' );
-var Response = require( process.cwd() + '/lib/Response' );
+var Response = require( __dirname + '/../lib/Response' );
 
 module.exports = {
     createRace: function( req, res ){

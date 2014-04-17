@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 // environment & config
 var env = process.env.NODE_ENV || 'dev';
-var config = require(process.cwd() + '/config/app')[env];
+var config = require(__dirname + '/config/app')[env];
 
 
 /** MONGO */

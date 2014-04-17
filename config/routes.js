@@ -1,7 +1,7 @@
 
 // controllers
 
-var race = require(process.cwd() + '/controllers/race');
+var race = require( __dirname + '/../controllers/race' );
 //var scraper = require( process.cwd() + '/controllers/scraper');
 //var user = require(process.cwd() + '/controllers/user');
 //var stubs = require(process.cwd() + '/controllers/stubs');
