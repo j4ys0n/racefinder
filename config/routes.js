@@ -8,6 +8,7 @@ var race = require(process.cwd() + '/controllers/race');
 
 module.exports = function(app) {
   app.put( '/api/race', race.createRace );
+  app.put( '/api/races', race.createRaces );
   app.get( '/api/race/link/:link', race.findRaceByLink );
   app.get( '/api/race/:id', race.readRace );
   app.post( '/api/race/:id', race.updateRace );

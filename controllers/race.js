@@ -11,6 +11,15 @@ module.exports = {
         });
     },
 
+    createRaces: function( req, res ){
+        var races = req.body.data,
+            i = 0;
+        for( i; i < races.length; i++ ){
+            var race = new Race( races[i] );
+            race.save();
+        }
+    },
+
     readRace: function( req, res ){
         var id = decodeURIComponent( req.params.id );
         Race.findById( id ).exec( function( err, race ){
