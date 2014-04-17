@@ -45,7 +45,7 @@ server.use('/public', express.static(__dirname + '/public'));
 
 
 // load models
-var models_path = process.cwd() + '/models'
+var models_path = __dirname + '/models'
 fs.readdirSync(models_path).forEach(function (file) {
   if (~file.indexOf('.js')) require(models_path + '/' + file);
 });
@@ -57,7 +57,7 @@ server.set( 'views', __dirname + '/views' );
 server.set( 'view engine', 'ejs' );
 
 // apply routes
-require(process.cwd() + '/config/routes')(server);
+require( __dirname + '/config/routes')(server);
 
 // listen to the supplied port
 server.listen(config.ports.server, function() {
