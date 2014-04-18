@@ -52,7 +52,17 @@ h1 {
         height: 55px;
         margin-left: 10px; }
         .container .content .header .controls input[type="text"] {
-          margin-bottom: 15px; }
+          display: inline-block;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          margin-bottom: 20px;
+          border: 1px #cdcdcd solid;
+          padding: 5px;
+          width: 80px;
+          height: 25px; }
+        .container .content .header .controls input[type="text"]:hover {
+          border-color: #ff6700; }
         .container .content .header .controls ul {
           display: inline-block;
           width: 320px;

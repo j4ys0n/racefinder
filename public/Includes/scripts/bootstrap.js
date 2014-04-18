@@ -60,7 +60,7 @@
 	} );
 
 	c.addAction( 'getRaces', function( params ){
-		c.m.getRaces(params.url);
+		//c.m.getRaces(params.url);
 	})
 
 	doc.ready(function(){
@@ -82,9 +82,11 @@
 			$( this.document.body ).callAction();
 		}
 		var dt = new Date()
-		$('.dateStart').val( (dt.getMonth()+1)+'/'+dt.getDate()+'/'+(dt.getYear()-100)  );
-		$('.dateEnd').val('06/01/14');
+		$('.dateStart').val( (dt.getMonth()+1)+'/'+dt.getDate()+'/'+(dt.getYear()+1900)  );
+		$('.dateEnd').val( (dt.getMonth()+3)+'/'+dt.getDate()+'/'+(dt.getYear()+1900) );
 		$('.datePicker').datepicker();
+
+		updateRaces();
 
 		$('.dateStart, .dateEnd').on('change', function( e ){
 			updateRaces();
