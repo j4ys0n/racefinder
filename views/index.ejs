@@ -19,12 +19,32 @@
                     <div class="controls">
                         <input type="text" class="dateStart datePicker"/>
                         <input type="text" class="dateEnd datePicker"/>
-                        <select class="raceType" disabled>
-                            <option value="1">Road Races</option>
-                            <option value="2">CX</option>
-                            <option value="3">MTB</option>
-                            <option value="6">Track</option>
-                        </select>
+                        <ul class="race-type group">
+                            <li>
+                                <input id="radio-road" type="radio" name="race-type" value="1" checked/>
+                                <label for="radio-road">
+                                    <span class="icon radio-road"></span>Road
+                                </label>
+                            </li>
+                            <li>
+                                <input id="radio-cx" type="radio" name="race-type" value="2"/>
+                                <label for="radio-cx">
+                                    <span class="icon radio-cx"></span>CX
+                                </label>
+                            </li>
+                            <li>
+                                <input id="radio-mtb" type="radio" name="race-type" value="3"/>
+                                <label for="radio-mtb">
+                                    <span class="icon radio-mtb"></span>MTB
+                                </label>
+                            </li>
+                            <li>
+                                <input id="radio-track" type="radio" name="race-type" value="6"/>
+                                <label for="radio-track">
+                                    <span class="icon radio-track"></span>Track
+                                </label>
+                            </li>
+                        </ul>
                         <button class="searchBtn">Search</button>
                     </div>
                 </div>

@@ -81,9 +81,11 @@
 		$('.searchBtn').on('click', function( e ){
 			e.preventDefault();
 			var s = encodeURIComponent($('.dateStart').val()),
-				e = encodeURIComponent($('.dateEnd').val());
+				e = encodeURIComponent($('.dateEnd').val()),
+				t = $('ul.race-type input[type="radio"]:checked').val();
+			console.log(t);
 			c.m.removeMarkers();
-			c.m.getRaces( '/api/races/date/1/'+s+'/'+e );
+			c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e );
 
 		});
 

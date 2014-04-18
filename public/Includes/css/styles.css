@@ -33,6 +33,9 @@ h1 {
 .container, .content, .map-canvas {
   width: 100%; }
 
+.admin.map-canvas {
+  height: 100%; }
+
 .container {
   height: 100%; }
   .container .content {
@@ -46,9 +49,51 @@ h1 {
         float: left;
         display: inline-block; }
       .container .content .header .controls {
-        height: 30px;
-        margin-left: 10px;
-        margin-top: 15px; }
+        height: 55px;
+        margin-left: 10px; }
+        .container .content .header .controls input[type="text"] {
+          margin-bottom: 15px; }
+        .container .content .header .controls ul {
+          display: inline-block;
+          width: 320px;
+          height: 35px;
+          padding: 0;
+          margin: 0; }
+        .container .content .header .controls ul li {
+          display: inline-block;
+          float: left;
+          margin-left: 10px;
+          width: 70px; }
+        .container .content .header .controls input[type="radio"] {
+          display: none; }
+        .container .content .header .controls label {
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          border: 2px #cdcdcd solid;
+          padding: 3px;
+          display: block;
+          width: 60px;
+          text-align: center;
+          font-size: 12px; }
+        .container .content .header .controls label:hover {
+          border-color: #ff6700; }
+        .container .content .header .controls input[type="radio"]:checked + label {
+          border-color: #ff6700; }
+        .container .content .header .controls .icon {
+          display: block;
+          height: 25px;
+          width: 40px;
+          margin-bottom: 3px;
+          margin-left: 5px; }
+        .container .content .header .controls .icon.radio-road {
+          background: url('../images/icon-radio-road.jpg') no-repeat center bottom; }
+        .container .content .header .controls .icon.radio-cx {
+          background: url('../images/icon-radio-cx.jpg') no-repeat center bottom; }
+        .container .content .header .controls .icon.radio-mtb {
+          background: url('../images/icon-radio-mtb.jpg') no-repeat center bottom; }
+        .container .content .header .controls .icon.radio-track {
+          background: url('../images/icon-radio-track.jpg') no-repeat center bottom; }
     .container .content .anchor {
       font-size: 10px;
       width: 100px;
@@ -62,3 +107,10 @@ h1 {
         margin-bottom: 5px; }
     .container .content .map-canvas {
       height: 93%; }
+
+.group:after {
+  content: "";
+  line-height: 0;
+  clear: both;
+  visibility: hidden;
+  display: block; }
