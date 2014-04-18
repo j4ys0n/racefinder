@@ -14,6 +14,9 @@ html, body {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+::-webkit-scrollbar {
+  width: 0 !important; }
+
 a {
   color: #3b3b3b; }
 
@@ -28,28 +31,34 @@ h1 {
   width: 400px; }
 
 .container, .content, .map-canvas {
-  width: 100%;
-  height: 100%; }
+  width: 100%; }
 
-.container .content .header {
-  background-color: #ffffff;
-  height: 60px;
-  padding: 5px 10px; }
-  .container .content .header .logo, .container .content .header .controls {
-    float: left;
-    display: inline-block; }
-  .container .content .header .controls {
-    height: 30px;
-    margin-left: 10px;
-    margin-top: 15px; }
-.container .content .anchor {
-  font-size: 10px;
-  width: 100px;
-  height: 20px;
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 100;
-  text-align: right; }
-  .container .content .anchor .twitter-share-button {
-    margin-bottom: 5px; }
+.container {
+  height: 100%; }
+  .container .content {
+    height: 100%; }
+    .container .content .header {
+      background-color: #ffffff;
+      height: 7%;
+      min-height: 60px;
+      padding: 5px 10px; }
+      .container .content .header .logo, .container .content .header .controls {
+        float: left;
+        display: inline-block; }
+      .container .content .header .controls {
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 15px; }
+    .container .content .anchor {
+      font-size: 10px;
+      width: 100px;
+      height: 20px;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+      text-align: right; }
+      .container .content .anchor .twitter-share-button {
+        margin-bottom: 5px; }
+    .container .content .map-canvas {
+      height: 93%; }

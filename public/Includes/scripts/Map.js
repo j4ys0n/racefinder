@@ -47,12 +47,14 @@
 
 		function addMarker( x ){
 			var draggable = true;
+			var updateGeo = false;
 			var marker = new google.maps.Marker({
 				map: map,
 				draggable: draggable,
     			//animation: google.maps.Animation.DROP,
 				position: new google.maps.LatLng( x.location_lat, x.location_long ),
-				title: x.name
+				title: x.name,
+				icon: '/public/Includes/images/flag-icon.png'
 			});
 			var dt = new Date(x.race_date);
 			var markerInfo = '<div class="markerInfo"><a href="'+x.link+'" target="_blank">'+x.name+'</a><br/>'
@@ -64,7 +66,7 @@
 			google.maps.event.addListener( marker, 'click', function() {
 				infowindow.open( map, marker );
 			});
-			if( draggable ){
+			if( draggable && updateGeo ){
 				google.maps.event.addListener( marker, 'dragend', function( e ){
 					//console.log( e.latLng.lat(), e.latLng.lng() );
 					$.ajax({
