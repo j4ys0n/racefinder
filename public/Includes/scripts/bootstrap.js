@@ -15,6 +15,14 @@
 		throw(xhr.statusText);
 	}
 
+	function updateRaces(){
+		var s = encodeURIComponent($('.dateStart').val()),
+			e = encodeURIComponent($('.dateEnd').val()),
+			t = $('ul.race-type input[type="radio"]:checked').val();
+		c.m.removeMarkers();
+		c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e );
+	}
+
 	c.addAction( 'getRaceRSS', function( param ){
 
 		//c.s.init( 'http://bikereg.com' );
@@ -78,16 +86,12 @@
 		$('.dateEnd').val('06/01/14');
 		$('.datePicker').datepicker();
 
-		$('.searchBtn').on('click', function( e ){
-			e.preventDefault();
-			var s = encodeURIComponent($('.dateStart').val()),
-				e = encodeURIComponent($('.dateEnd').val()),
-				t = $('ul.race-type input[type="radio"]:checked').val();
-			console.log(t);
-			c.m.removeMarkers();
-			c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e );
-
+		$('.dateStart, .dateEnd').on('change', function( e ){
+			updateRaces();
 		});
+		$('#radio-road, #radio-cx, #radio-mtb, #radio-track').on('click', function( e ){
+			updateRaces();
+		})
 
 	});
 
