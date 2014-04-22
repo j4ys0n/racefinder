@@ -14,7 +14,7 @@
 			mapOptions,
 			map,
 			markers = [];
-		this.oDefaults = {
+		self.oDefaults = {
 			contentType: 'application/json; charset=utf-8',
 			mapCanvasClass: '.map-canvas'
 		};
@@ -25,11 +25,12 @@
 		};
 
 		//mix in the defaults and settings
-		oOptions = $.extend( this.oDefaults, oSettings );
+		oOptions = $.extend( self.oDefaults, oSettings );
 		//selector cache
-		this.combinedSelectors = {};
+		self.combinedSelectors = {};
+		self.combinedSelectors.mapCanvas = $();
 
-		if( this.feature.test('touchend') ){
+		if( self.feature.test('touchend') ){
 			clickEvt = 'touchend';
 			scrollEvt = 'touchmove';
 		} else {
@@ -41,8 +42,13 @@
 		function removeMarkers(){
 			var i = 0;
 			for( i; i < markers.length; i++ ){
-				markers[i].setMap(null);
+				markers[i].setMap( null );
+				$(markers[i]).remove();
 			}
+			markers = [];
+			google.maps.event.clearInstanceListeners( window) ;
+			google.maps.event.clearInstanceListeners( document );
+			google.maps.event.clearInstanceListeners( self.combinedSelectors.mapCanvas );
 		}
 
 		function addMarker( x ){
@@ -103,8 +109,14 @@
 			})
 		}
 
+		function updateSelectorCache() {
+			self.combinedSelectors.mapCanvas = doc.find( oOptions.mapCanvasClass );
+		}
+
 		function init(){
-			map = new google.maps.Map( doc.find( oOptions.mapCanvasClass )[0], mapOptions );
+			updateSelectorCache();
+
+			map = new google.maps.Map( doc.find( self.combinedSelectors.mapCanvas )[0], mapOptions );
 		}
 
 		return {

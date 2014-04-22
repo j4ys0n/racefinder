@@ -1,3 +1,9 @@
+@mixin roundedCorners( $r ){
+	-webkit-border-radius: $r;
+	   -moz-border-radius: $r;
+			border-radius: $r;
+}
+
 html, body {
     background-color: #efefef;
     color: #3b3b3b;
@@ -14,6 +20,9 @@ html, body {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+}
+::-webkit-scrollbar {
+	width: 0 !important;
 }
 a {
     color: #3b3b3b;
@@ -33,5 +42,118 @@ h1 {
 
 .container, .content, .map-canvas {
     width: 100%;
+}
+
+.admin.map-canvas {
     height: 100%;
+}
+
+.container {
+    height: 100%;
+    .content {
+        height: 100%;
+        .header {
+            background-color: #ffffff;
+            height: 7%;
+            min-height: 60px;
+            padding: 5px 10px;
+            .logo, .controls {
+                float: left;
+                display: inline-block;
+            }
+            .controls {
+                height: 55px;
+                margin-left: 10px;
+                input[type="text"] {
+                    display: inline-block;
+                    @include roundedCorners( 5px );
+                    margin-bottom: 20px;
+                    border: 1px #cdcdcd solid;
+                    padding: 5px;
+                    width: 80px;
+                    height: 25px;
+                }
+                input[type="text"]:hover {
+                    border-color: #ff6700;
+                }
+
+                ul {
+                    display: inline-block;
+                    width: 320px;
+                    height: 35px;
+                    padding: 0;
+                    margin: 0;
+                }
+                ul li {
+                    display: inline-block;
+                    float: left;
+                    margin-left: 10px;
+                    width: 70px;
+                }
+                input[type="radio"] {
+                    display: none;
+                }
+                label {
+                    @include roundedCorners( 5px );
+                    border: 2px #cdcdcd solid;
+                    padding: 3px;
+                    display: block;
+                    width: 60px;
+                    text-align: center;
+                    font-size: 12px;
+                }
+                label:hover {
+                    border-color: #ff6700;
+                }
+                input[type="radio"]:checked + label {
+                    border-color: #ff6700;
+                }
+
+                .icon {
+                    display: block;
+                    height: 25px;
+                    width: 40px;
+                    margin-bottom: 3px;
+                    margin-left: 5px;
+                }
+                .icon.radio-road {
+                    background: url('../images/icon-radio-road.jpg') no-repeat center bottom;
+                }
+                .icon.radio-cx {
+                    background: url('../images/icon-radio-cx.jpg') no-repeat center bottom;
+                }
+                .icon.radio-mtb {
+                    background: url('../images/icon-radio-mtb.jpg') no-repeat center bottom;
+                }
+                .icon.radio-track {
+                    background: url('../images/icon-radio-track.jpg') no-repeat center bottom;
+                }
+            }
+        }
+        .anchor {
+            font-size: 10px;
+            width: 100px;
+            height: 20px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+            text-align: right;
+
+            .twitter-share-button {
+                margin-bottom: 5px;
+            }
+        }
+        .map-canvas {
+            height: 93%;
+        }
+    }
+}
+
+.group:after {
+	content: "";
+	line-height: 0;
+	clear: both;
+	visibility: hidden;
+	display: block;
 }

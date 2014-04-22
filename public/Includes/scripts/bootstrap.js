@@ -83,7 +83,7 @@
 		}
 		var dt = new Date()
 		$('.dateStart').val( (dt.getMonth()+1)+'/'+dt.getDate()+'/'+(dt.getYear()+1900)  );
-		$('.dateEnd').val( (dt.getMonth()+3)+'/'+dt.getDate()+'/'+(dt.getYear()+1900) );
+		$('.dateEnd').val( (dt.getMonth()+2)+'/'+dt.getDate()+'/'+(dt.getYear()+1900) );
 		$('.datePicker').datepicker();
 
 		updateRaces();
