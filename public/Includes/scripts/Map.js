@@ -56,11 +56,11 @@
 			var updateGeo = false;
 			var marker = new google.maps.Marker({
 				map: map,
-				draggable: draggable,
+				//draggable: draggable,
     			//animation: google.maps.Animation.DROP,
 				position: new google.maps.LatLng( x.location_lat, x.location_long ),
-				title: x.name,
-				icon: '/public/Includes/images/flag-icon.png'
+				title: x.name
+				//icon: '/public/Includes/images/flag-icon.png'
 			});
 			var dt = new Date(x.race_date);
 			var markerInfo = '<div class="markerInfo"><a href="'+x.link+'" target="_blank">'+x.name+'</a><br/>'
