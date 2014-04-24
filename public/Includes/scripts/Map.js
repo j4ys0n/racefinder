@@ -11,6 +11,7 @@
 			wdw = $(w),
 			html = $('html'),
 			apiKey = 'AIzaSyAuS_AXBjFep-g23GTsUeFkNEeloKzAvmU',
+			nativeGeo = false,
 			mapOptions,
 			map,
 			raceType = 0,
@@ -25,7 +26,7 @@
 
 		mapOptions = {
 			center: new google.maps.LatLng(40.7195235,-73.9981957),
-			zoom: 5
+			zoom: 8
 		};
 
 		//mix in the defaults and settings
@@ -102,8 +103,8 @@
 						success: function( e ){
 							console.log('success', e );
 						}
-					})
-				})
+					});
+				});
 			}
 			markers.push( marker );
 		}
@@ -133,10 +134,31 @@
 			self.combinedSelectors.mapCanvas = doc.find( oOptions.mapCanvasClass );
 		}
 
-		function init(){
+		function initMap(){
+			map = new google.maps.Map( doc.find( self.combinedSelectors.mapCanvas )[0], mapOptions );
+		}
+
+		function init( callback ){
 			updateSelectorCache();
 
-			map = new google.maps.Map( doc.find( self.combinedSelectors.mapCanvas )[0], mapOptions );
+			if( 'geolocation' in navigator ){
+				nativeGeo = true;
+				navigator.geolocation.getCurrentPosition( function( pos ){
+					mapOptions.center = new google.maps.LatLng( pos.coords.latitude,pos.coords.longitude );
+					initMap();
+					setTimeout(function(){
+						callback();
+					}, 500);
+				});
+			}else {
+				initMap();
+				setTimeout(function(){
+					callback();
+				}, 500);
+			}
+
+
+
 		}
 
 		return {

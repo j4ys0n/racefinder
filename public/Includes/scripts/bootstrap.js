@@ -64,7 +64,7 @@
 	})
 
 	doc.ready(function(){
-		c.m.init();
+		c.m.init( updateRaces );
 		c.s.init( 'http://bikereg.com' )
 
 	})
@@ -86,7 +86,7 @@
 		$('.dateEnd').val( (dt.getMonth()+2)+'/'+dt.getDate()+'/'+(dt.getYear()+1900) );
 		$('.datePicker').datepicker();
 
-		updateRaces();
+		//updateRaces();
 
 		$('.dateStart, .dateEnd').on('change', function( e ){
 			updateRaces();
