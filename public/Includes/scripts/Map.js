@@ -134,8 +134,11 @@
 			self.combinedSelectors.mapCanvas = doc.find( oOptions.mapCanvasClass );
 		}
 
-		function initMap(){
+		function initMap( callback ){
 			map = new google.maps.Map( doc.find( self.combinedSelectors.mapCanvas )[0], mapOptions );
+			setTimeout(function(){
+				callback();
+			}, 500);
 		}
 
 		function init( callback ){
@@ -143,18 +146,16 @@
 
 			if( 'geolocation' in navigator ){
 				nativeGeo = true;
-				navigator.geolocation.getCurrentPosition( function( pos ){
-					mapOptions.center = new google.maps.LatLng( pos.coords.latitude,pos.coords.longitude );
-					initMap();
-					setTimeout(function(){
-						callback();
-					}, 500);
-				});
+				navigator.geolocation.getCurrentPosition(
+					function( pos ){
+						mapOptions.center = new google.maps.LatLng( pos.coords.latitude,pos.coords.longitude );
+						initMap( callback );
+					},
+					function(){
+						initMap( callback );
+					});
 			}else {
-				initMap();
-				setTimeout(function(){
-					callback();
-				}, 500);
+				initMap( callback );
 			}
 
 
