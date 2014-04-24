@@ -20,7 +20,7 @@
 			e = encodeURIComponent($('.dateEnd').val()),
 			t = $('ul.race-type input[type="radio"]:checked').val();
 		c.m.removeMarkers();
-		c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e );
+		c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e, t );
 	}
 
 	c.addAction( 'getRaceRSS', function( param ){
