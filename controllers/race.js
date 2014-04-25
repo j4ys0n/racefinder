@@ -78,6 +78,26 @@ module.exports = {
         });
     },
 
+    findRacesByDistance: function( req, res ){
+        var t = decodeURIComponent( req.params.type ),
+            s = new Date(decodeURIComponent( req.params.start )),
+            e = new Date(decodeURIComponent( req.params.end )),
+            d = decodeURIComponent( req.params.dist ),
+            lat = decodeURIComponent( req.params.lat ),
+            lng = decodeURIComponent( req.params.lng );
+        Race.find( { 'race_type': t,
+                     'race_date': { '$gte': s, '$lt': e },
+                     'coords': { $near:
+                         { $geometry: {
+                             type: 'Point',
+                             coordinates: [ lng, lat ]
+                         }, $maxDistance: d }
+                     } } )
+            .exec( function( err, race ){
+            res.json( Response.code( err, race ), Response.data( err, race ) );
+        });
+    },
+
     updateRace: function( req, res ){
         var id = decodeURIComponent( req.params.id );
         var updates = {
@@ -86,8 +106,7 @@ module.exports = {
         };
         var updateMap = {
             $set: ['name', 'race_type', 'race_date', 'reg_open_date',
-                'reg_close_date', 'location', 'location_lat',
-                'location_long', 'link', 'create_date', 'status']
+                'reg_close_date', 'location', 'coords', 'link', 'create_date', 'status']
         }
 
         for( var action in updateMap ){
@@ -116,5 +135,26 @@ module.exports = {
         Race.remove( {}, function( err, race ){
             res.json( Response.code( err, race ), Response.data( err, race ) );
         });
+    },
+
+    //special
+    addLoc: function( req, res ){
+        var races = req.body.data,
+            i = 0;
+        for( i; i < races.length; i++ ){
+            var r = races[i],
+                lat = r.location_lat,
+                lng = r.location_long,
+                id = r._id,
+                updates = {
+                    $set: {
+                        coords: [lng, lat]
+                    }
+                };
+
+            Race.findByIdAndUpdate( id, updates, function( err, race ){
+                res.json( Response.code( err, race ), Response.data( err, race ) );
+            })
+        }
     }
 };

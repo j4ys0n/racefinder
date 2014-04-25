@@ -85,8 +85,8 @@
                     var coords;
                     if( status === google.maps.GeocoderStatus.OK ){
                         coords =  res[0].geometry.location;
-                        race.location_lat = coords.k;
-                        race.location_long = coords.A;
+                        race.coords[1] = coords.k;
+                        race.coords[0] = coords.A;
                         race.status = 1;
                         updateRace( race );
                     }else{

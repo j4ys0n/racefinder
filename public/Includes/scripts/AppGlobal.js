@@ -83,6 +83,23 @@
 				}
 				return true;
 			}
+		},
+		setCookie: function( cookieName, cookieVal, lifespanInDays, validDomain ){
+			var domainStr = validDomain ? ("; domain=" + validDomain) : '' ;
+			document.cookie = cookieName + "=" + encodeURIComponent( cookieVal ) + "; max-age=" + ( 60 * 60 * 24 * parseInt( lifespanInDays, 10 ) ) + "; path=/" + domainStr ;
+		},
+		getCookie: function( cookieName ){
+			var cookieStr = document.cookie;
+
+			if (cookieStr.length != 0) {
+				var cookieVal = cookieStr.match( '(^|;)[\\s]*' + cookieName + '=([^;]*)' );
+				if( cookieVal !== null ){
+					return decodeURIComponent( cookieVal[2] );
+				}else{
+					return undefined;
+				}
+			}
+			return undefined;
 		}
 	};
 	function AppGlobal( oOptions ){

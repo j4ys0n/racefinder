@@ -64,10 +64,27 @@ h1 {
             .controls {
                 height: 55px;
                 margin-left: 10px;
+
+				.dateStack,
+				.locationStack {
+					display: inline-block;
+				}
+
+				.locationStack .location {
+					display: block;
+					font-size: 12px;
+					margin-bottom: 9px;
+					cursor: pointer;
+				}
+
+				.locationStack .location:hover{
+					font-weight: bold;
+				}
+
                 input[type="text"] {
-                    display: inline-block;
+                    display: block;
                     @include roundedCorners( 5px );
-                    margin-bottom: 20px;
+                    margin-bottom: 5px;
                     border: 1px #cdcdcd solid;
                     padding: 5px;
                     width: 80px;
@@ -76,11 +93,14 @@ h1 {
                 input[type="text"]:hover {
                     border-color: #ff6700;
                 }
+                input[type="text"].disabled {
+                    background: #aaaaaa;
+                }
 
                 ul {
                     display: inline-block;
                     width: 320px;
-                    height: 35px;
+                    height: 44px;
                     padding: 0;
                     margin: 0;
                 }
@@ -148,6 +168,60 @@ h1 {
             height: 93%;
         }
     }
+}
+
+.overlays {
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		display: none;
+		width: 400px;
+		margin: 20% -200px 0;
+		padding: 10px;
+		background-color: #ffffff;
+		border: 1px #cdcdcd solid;
+		@include roundedCorners( 4px );
+		text-align: center;
+
+		.close {
+			float: right;
+			margin-top: -10px;
+			font-size: 20px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		input[type="text"].input-location {
+			margin-top: 20px;
+			width: 80%;
+			@include roundedCorners( 5px );
+			border: 1px #cdcdcd solid;
+			padding: 5px;
+			height: 25px;
+		}
+		input[type="text"]:hover {
+			border-color: #ff6700;
+		}
+
+		.btn {
+			width: 120px;
+		}
+	}
+}
+
+.btn {
+	display: block;
+	@include roundedCorners( 4px );
+	border: 2px #cdcdcd solid;
+	padding: 10px;
+	margin: 20px auto 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+.btn:hover{
+	border-color: #ff6700;
 }
 
 .group:after {

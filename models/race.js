@@ -18,6 +18,7 @@ var RaceSchema = new Schema({
     reg_open_date: { type: Date },
     reg_close_date: { type: Date },
     location: { type: String, default: '' },
+    coords: { type: Array, default: [], index: '2dsphere' },
     location_lat: { type: Number, default: 0 },
     location_long: { type: Number, default: 0 },
     link: { type: String, default: '' },
@@ -26,7 +27,7 @@ var RaceSchema = new Schema({
 });
 
 //turn off autoindexing. helps with performance in production
-RaceSchema.set( 'autoIndex', false );
+RaceSchema.set( 'autoIndex', true );
 
 //allow getters to be run on all documents when converting to Objects & JSON
 RaceSchema.set( 'toObject', { getters: true, virtuals: false } );

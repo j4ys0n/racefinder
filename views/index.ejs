@@ -17,8 +17,16 @@
                 <div class="header">
                     <img class="logo" src="/public/Includes/images/logo.jpg" height="50"/>
                     <div class="controls">
-                        <input type="text" class="dateStart datePicker"/>
-                        <input type="text" class="dateEnd datePicker"/>
+                        <span class="dateStack">
+                            <input type="text" class="dateStart datePicker"/>
+                            <input type="text" class="dateEnd datePicker"/>
+                        </span>
+                        <span class="locationStack">
+                            <span class="location overlay-open" data-overlay="location" title="Change your location">New York, NY</span>
+                            <input type="text" class="distance" value="200"/>
+                        </span>
+
+
                         <ul class="race-type group">
                             <li>
                                 <input id="radio-road" type="radio" name="race-type" value="1" checked/>
@@ -56,6 +64,13 @@
                     feedback: <a href="http://twitter.com/jayssface">@jayssface</a>
                 </div>
             </div>
+            <div class="overlays">
+                <div class="overlay location">
+                    <span class="close">&times;</span>
+                    <input type="text" class="input-location" placeholder="Enter your location"/>
+                    <span class="btn">Set Location</span>
+                </div>
+            </div>
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -64,6 +79,7 @@
         <script src="public/Includes/scripts/AppGlobal.js"></script>
         <script src="public/Includes/scripts/Scrape.js"></script>
         <script src="public/Includes/scripts/Map.js"></script>
+        <script src="public/Includes/scripts/Overlay.js"></script>
         <script src="public/Includes/scripts/bootstrap.js"></script>
 
         <script>

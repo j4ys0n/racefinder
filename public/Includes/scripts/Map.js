@@ -11,7 +11,11 @@
 			wdw = $(w),
 			html = $('html'),
 			apiKey = 'AIzaSyAuS_AXBjFep-g23GTsUeFkNEeloKzAvmU',
+			geocoder = new google.maps.Geocoder(),
+			initMapCallback = function(){return false;},
 			nativeGeo = false,
+			userLat = 40.7195235,
+			userLng = -73.9981957,
 			mapOptions,
 			map,
 			raceType = 0,
@@ -21,11 +25,20 @@
 			svgMarker3 = 'M-8.613-89.109c-0.481,1.052-2.282,3.789-1.758,4.826c0.428,1.025,1.726,2.453,2.812,2.739c1.289-5.216,2.579-10.434,3.867-15.65c0.341-1.215,1.889-4.66,1.406-5.869C-4.858-98.853-6.491-93.754-8.613-89.109zM0-115.278c-21.286,0-38.542,17.256-38.542,38.542S-14.931-20.833,0,0c14.931-22.222,38.542-55.451,38.542-76.736S21.286-115.278,0-115.278zM2.871-67.59v-0.131c2.93-7.042,5.86-14.085,8.79-21.127C6.934-82.11,2.207-75.371-2.52-68.633c-1.797-0.304-3.594-0.609-5.39-0.913c-4.072-0.819-8.404-0.481-12.891-0.521c1.522-5.303,3.047-10.607,4.57-15.911c-4.499,3.899-6.859,17.396-13.36,18.258v-0.391c4.609-7.042,9.22-14.086,13.828-21.127h0.469c0.976,1,1.953,2,2.93,2.999h0.234c3.515-7.215,7.032-14.434,10.546-21.649h0.352c3.242,5.651,6.485,11.303,9.727,16.954C5.098-85.11,1.699-79.284-1.699-73.458c0.078-0.043,0.156-0.087,0.234-0.131c4.726-6.693,9.453-13.39,14.18-20.084c0.117,0.043,0.234,0.087,0.352,0.13c0.732,2.504,2.987,4.657,4.336,6.651c4.062,6.085,8.125,12.173,12.188,18.258C24.854-64.366,9.22-65.338,2.871-67.59z';
 		self.oDefaults = {
 			contentType: 'application/json; charset=utf-8',
-			mapCanvasClass: '.map-canvas'
+			mapCanvasClass: '.map-canvas',
+			locCookieName: 'loc',
+			latCookieName: 'lat',
+			lngCookieName: 'lng',
+			locCookieDays: 30,
+			latCookieDays: 30,
+			lngCookieDays: 30,
+			locationInputClass: '.overlay.location .input-location',
+			locationInputBtnClass: '.overlay.location .btn',
+			locationLabelClass: '.controls .locationStack .location'
 		};
 
 		mapOptions = {
-			center: new google.maps.LatLng(40.7195235,-73.9981957),
+			center: new google.maps.LatLng( userLat, userLng ),
 			zoom: 8
 		};
 
@@ -78,7 +91,7 @@
 				map: map,
 				draggable: draggable,
     			//animation: google.maps.Animation.DROP,
-				position: new google.maps.LatLng( x.location_lat, x.location_long ),
+				position: new google.maps.LatLng( x.coords[1], x.coords[0] ),
 				title: x.name,
 				icon: icon
 			});
@@ -94,12 +107,13 @@
 			});
 			if( draggable && updateGeo ){
 				google.maps.event.addListener( marker, 'dragend', function( e ){
-					//console.log( e.latLng.lat(), e.latLng.lng() );
 					$.ajax({
 						contentType: oOptions.contentType,
 						url: '/api/race/'+x._id,
 						type: 'POST',
-						data: JSON.stringify({'location_lat': e.latLng.lat(), 'location_long': e.latLng.lng() }),
+						data: JSON.stringify({
+							'coords':[ e.latLng.lng(), e.latLng.lat() ]
+						}),
 						success: function( e ){
 							console.log('success', e );
 						}
@@ -120,8 +134,15 @@
 			}
 		}
 
-		function getRaces( url, t ){
+		function getRaces( url, t, d ){
 			raceType = parseInt( t, 10 );
+			d = Math.ceil( parseInt( d, 10 ) * 1609.34 );
+
+			if( nativeGeo ){
+				url = url.replace('date', 'dist');
+				url += '/'+d+'/'+userLat+'/'+userLng;
+			}
+
 			$.ajax({
 				contentType: oOptions.contentType,
 				url: url,
@@ -130,37 +151,98 @@
 			})
 		}
 
-		function updateSelectorCache() {
-			self.combinedSelectors.mapCanvas = doc.find( oOptions.mapCanvasClass );
-		}
-
 		function initMap( callback ){
+			mapOptions.center = new google.maps.LatLng( userLat, userLng );
 			map = new google.maps.Map( doc.find( self.combinedSelectors.mapCanvas )[0], mapOptions );
 			setTimeout(function(){
 				callback();
 			}, 500);
 		}
 
-		function init( callback ){
-			updateSelectorCache();
+		function geocode( loc, callback ){
+			geocoder.geocode( { address: loc }, function( res, status ){
+				var coords;
+				if( status === google.maps.GeocoderStatus.OK ){
+					coords =  res[0].geometry.location;
+					userLng = coords.A;
+					userLat = coords.k;
+					//store values
+					self.setCookie( oOptions.latCookieName, userLat, oOptions.latCookieDays );
+					self.setCookie( oOptions.lngCookieName, userLng, oOptions.lngCookieDays );
+					self.setCookie( oOptions.locCookieName, loc, oOptions.locCookieDays );
+					doc.find( oOptions.locationLabelClass ).text(loc);
+					callback();
+					c.o.closeOverlay();
+				}else{
+					//geocode failed, notify user to try again
+					console.log('geocode failed');
+				}
+			});
+		}
 
-			if( 'geolocation' in navigator ){
-				nativeGeo = true;
-				navigator.geolocation.getCurrentPosition(
-					function( pos ){
-						mapOptions.center = new google.maps.LatLng( pos.coords.latitude,pos.coords.longitude );
-						initMap( callback );
-					},
-					function(){
-						initMap( callback );
-					});
-			}else {
-				initMap( callback );
+		function askForLocation(){
+			//show location input overlay
+			c.o.initOverlay( doc.find('.overlay.location') );
+		}
+
+		function getLocation(){
+			//check cookie
+			var loc = self.getCookie( oOptions.locCookieName ),
+				lat = self.getCookie( oOptions.latCookieName ),
+				lng = self.getCookie( oOptions.lngCookieName );
+			console.log(loc);
+			if( lat === undefined || lng === undefined ){
+				if( loc === undefined ){
+					askForLocation();
+				}else{
+					geocode( loc );
+				}
+			}else{
+				userLng = lng;
+				userLat = lat;
+				doc.find( oOptions.locationLabelClass ).text(loc);
+				initMap( initMapCallback );
 			}
 
-
-
 		}
+
+		function updateSelectorCache() {
+			self.combinedSelectors.mapCanvas = doc.find( oOptions.mapCanvasClass );
+		}
+
+		function init( callback ){
+			updateSelectorCache();
+			initMapCallback = callback;
+
+			if( 'geolocation' in navigator ){
+				navigator.geolocation.getCurrentPosition(
+					function( pos ){
+						console.log(pos);
+						userLat = pos.coords.latitude;
+						userLng = pos.coords.longitude;
+						initMap( initMapCallback );
+						nativeGeo = true;
+					},
+					function( error ){
+						//initMap( callback );
+						console.log('location permission denied');
+						getLocation();
+					});
+			}else {
+				//initMap( callback );
+				console.log('browser does not support geolocation');
+				getLocation();
+			}
+		}
+
+		doc.delegate( oOptions.locationInputBtnClass, clickEvt, function( e ){
+			var loc = doc.find( oOptions.locationInputClass ).val();
+			function callback(){
+				initMap( initMapCallback );
+			}
+
+			geocode( loc, callback );
+		});
 
 		return {
 			init: init,
