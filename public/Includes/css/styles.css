@@ -49,7 +49,7 @@ h1 {
         float: left;
         display: inline-block; }
       .container .content .header .controls {
-        height: 55px;
+        height: 65px;
         margin-left: 10px; }
         .container .content .header .controls .dateStack, .container .content .header .controls .locationStack {
           display: inline-block; }
