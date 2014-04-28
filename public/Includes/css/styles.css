@@ -52,12 +52,17 @@ h1 {
         height: 65px;
         margin-left: 10px; }
         .container .content .header .controls .dateStack, .container .content .header .controls .locationStack {
-          display: inline-block; }
-        .container .content .header .controls .locationStack .location {
-          display: block;
-          font-size: 12px;
-          margin-bottom: 9px;
-          cursor: pointer; }
+          display: inline-block;
+          float: left;
+          position: relative; }
+        .container .content .header .controls .locationStack {
+          margin-top: 5px;
+          margin-left: 10px; }
+          .container .content .header .controls .locationStack .location {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 9px;
+            cursor: pointer; }
         .container .content .header .controls .locationStack .location:hover {
           font-weight: bold; }
         .container .content .header .controls input[type="text"] {
@@ -79,7 +84,7 @@ h1 {
           width: 320px;
           height: 44px;
           padding: 0;
-          margin: 0; }
+          margin: 1px 0 0; }
         .container .content .header .controls ul li {
           display: inline-block;
           float: left;
@@ -185,6 +190,7 @@ h1 {
           .container .content .header .controls .dateStack, .container .content .header .controls .locationStack {
             display: inline-block;
             width: 49%;
+            overflow: hidden;
             height: 25px;
             margin: 3px 0; }
           .container .content .header .controls .locationStack .location {

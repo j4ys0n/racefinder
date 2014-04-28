@@ -68,13 +68,20 @@ h1 {
 				.dateStack,
 				.locationStack {
 					display: inline-block;
+					float: left;
+					position: relative;
 				}
 
-				.locationStack .location {
-					display: block;
-					font-size: 12px;
-					margin-bottom: 9px;
-					cursor: pointer;
+				.locationStack {
+					margin-top: 5px;
+					margin-left: 10px;
+
+					.location {
+						display: block;
+						font-size: 12px;
+						margin-bottom: 9px;
+						cursor: pointer;
+					}
 				}
 
 				.locationStack .location:hover{
@@ -102,7 +109,7 @@ h1 {
 					width: 320px;
 					height: 44px;
 					padding: 0;
-					margin: 0;
+					margin: 1px 0 0;
 				}
 				ul li {
 					display: inline-block;
@@ -235,7 +242,7 @@ h1 {
 					.locationStack {
 						display: inline-block;
 						width: 49%;
-						//overflow: hidden;
+						overflow: hidden;
 						height: 25px;
 						margin: 3px 0;
 					}
