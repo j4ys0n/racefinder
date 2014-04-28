@@ -194,7 +194,7 @@ h1 {
             margin-bottom: 9px;
             cursor: pointer;
             width: 45%;
-            line-height: 1.2em; }
+            line-height: 1em; }
           .container .content .header .controls input[type='text'] {
             width: 45%;
             display: inline-block;
