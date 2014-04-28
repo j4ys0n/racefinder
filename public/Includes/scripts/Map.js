@@ -214,6 +214,7 @@
 			updateSelectorCache();
 			initMapCallback = callback;
 
+			nativeGeo = true;
 			if( 'geolocation' in navigator ){
 				navigator.geolocation.getCurrentPosition(
 					function( pos ){
@@ -221,7 +222,7 @@
 						userLat = pos.coords.latitude;
 						userLng = pos.coords.longitude;
 						initMap( initMapCallback );
-						nativeGeo = true;
+						//nativeGeo = true;
 					},
 					function( error ){
 						//initMap( callback );
@@ -240,7 +241,7 @@
 			function callback(){
 				initMap( initMapCallback );
 			}
-
+			//nativeGeo = true;
 			geocode( loc, callback );
 		});
 
