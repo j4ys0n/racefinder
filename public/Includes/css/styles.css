@@ -43,7 +43,7 @@ h1 {
     .container .content .header {
       background-color: #ffffff;
       height: 7%;
-      min-height: 60px;
+      min-height: 70px;
       padding: 5px 10px; }
       .container .content .header .logo, .container .content .header .controls {
         float: left;
