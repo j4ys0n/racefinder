@@ -185,7 +185,6 @@ h1 {
           .container .content .header .controls .dateStack, .container .content .header .controls .locationStack {
             display: inline-block;
             width: 49%;
-            overflow: hidden;
             height: 25px;
             margin: 3px 0; }
           .container .content .header .controls .locationStack .location {
@@ -194,7 +193,7 @@ h1 {
             margin-bottom: 9px;
             cursor: pointer;
             width: 45%;
-            line-height: 1em; }
+            line-height: 1.2em; }
           .container .content .header .controls input[type='text'] {
             width: 45%;
             display: inline-block;

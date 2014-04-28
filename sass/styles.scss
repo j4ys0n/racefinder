@@ -235,7 +235,7 @@ h1 {
 					.locationStack {
 						display: inline-block;
 						width: 49%;
-						overflow: hidden;
+						//overflow: hidden;
 						height: 25px;
 						margin: 3px 0;
 					}
@@ -246,7 +246,7 @@ h1 {
 						margin-bottom: 9px;
 						cursor: pointer;
 						width: 45%;
-						line-height: 1em;
+						line-height: 1.2em;
 					}
 
 					input[type='text'] {
