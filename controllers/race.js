@@ -74,7 +74,7 @@ module.exports = {
 
             console.log(s, e)
 
-        Race.find( { 'race_type': t, 'race_date': { '$gte': s, '$lt': e } } )
+        Race.find( { 'race_type': t, 'race_date': { '$gte': s, '$lte': e } } )
             .exec( function( err, race ){
             res.json( Response.code( err, race ), Response.data( err, race ) );
         });
@@ -88,7 +88,7 @@ module.exports = {
             lat = decodeURIComponent( req.params.lat ),
             lng = decodeURIComponent( req.params.lng );
         Race.find( { 'race_type': t,
-                     'race_date': { '$gte': s, '$lt': e },
+                     'race_date': { '$gte': s, '$lte': e },
                      'coords': { $near:
                          { $geometry: {
                              type: 'Point',
