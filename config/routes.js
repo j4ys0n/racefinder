@@ -7,18 +7,18 @@ var race = require( __dirname + '/../controllers/race' );
 //var stubs = require(process.cwd() + '/controllers/stubs');
 
 module.exports = function(app) {
-  app.put( '/api/race', race.createRace );
-  app.put( '/api/races', race.createRaces );
+  //app.put( '/api/race', race.createRace );
+  //app.put( '/api/races', race.createRaces );
   app.get( '/api/race/link/:link', race.findRaceByLink );
   app.get( '/api/race/:id', race.readRace );
-  app.post( '/api/race/:id', race.updateRace );
-  app.del( '/api/race/:id', race.deleteRace );
+  //app.post( '/api/race/:id', race.updateRace );
+  //app.del( '/api/race/:id', race.deleteRace );
   app.get( '/api/races/status/:status', race.findRacesByStatus );
   app.get( '/api/races/type/:type', race.findRacesByType );
   app.get( '/api/races/date/:type/:start/:end', race.findRacesByDates );
   app.get( '/api/races/dist/:type/:start/:end/:dist/:lat/:lng', race.findRacesByDistance );
   app.get( '/api/races', race.readRaces );
-  app.del( '/api/races', race.deleteAllRaces );
+  //app.del( '/api/races', race.deleteAllRaces );
 
   //special
   //app.post( '/api/special/addloc', race.addLoc );
@@ -26,9 +26,9 @@ module.exports = function(app) {
 
  // app.get( '/scraper/races', scraper.getRaces );
 
-  app.get( '/admin', function( req, res ){
-      res.render( 'admin' );
-  });
+  // app.get( '/admin', function( req, res ){
+  //     res.render( 'admin' );
+  // });
   app.get( '/', function( req, res ){
       res.render( 'index' );
   });
