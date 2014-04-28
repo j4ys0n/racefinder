@@ -20,7 +20,11 @@
 		var s = encodeURIComponent($('.dateStart').val()),
 			e = encodeURIComponent($('.dateEnd').val()),
 			t = $('ul.race-type input[type="radio"]:checked').val(),
-			d = $('.distance').val();
+			d = parseInt( $('.distance').val(), 10);
+			if( d === 0 || isNaN(d) || d === null || d === undefined ){
+				d = 50;
+			}
+
 		c.m.removeMarkers();
 		c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e, t, d );
 	}
