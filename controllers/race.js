@@ -16,7 +16,9 @@ module.exports = {
             i = 0;
         for( i; i < races.length; i++ ){
             var race = new Race( races[i] );
-            race.save();
+            race.save( function( err, race ){
+                res.json( Response.code( err, race ), Response.data( err, race ) );
+            });
         }
     },
 
@@ -106,7 +108,8 @@ module.exports = {
         };
         var updateMap = {
             $set: ['name', 'race_type', 'race_date', 'reg_open_date',
-                'reg_close_date', 'location', 'coords', 'link', 'create_date', 'status']
+                'reg_close_date', 'location', 'coords', 'location_lat',
+                'location_long', 'link', 'create_date', 'status']
         }
 
         for( var action in updateMap ){
