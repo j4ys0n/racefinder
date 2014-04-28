@@ -156,7 +156,7 @@
 		function initMap( callback ){
 			var delay = 750;
 			if( mobile ){
-				delay = 2000;
+				delay = 3000;
 			}
 			mapOptions.center = new google.maps.LatLng( userLat, userLng );
 			map = new google.maps.Map( doc.find( self.combinedSelectors.mapCanvas )[0], mapOptions );
