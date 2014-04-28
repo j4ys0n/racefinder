@@ -163,6 +163,96 @@ h1 {
   .overlays .overlay .btn {
     width: 120px; }
 
+@media screen and (max-width: 640px) {
+  .container {
+    width: 100%; }
+    .container .content {
+      width: 100%;
+      overflow-x: hidden; }
+      .container .content .header {
+        background-color: #ffffff;
+        width: 100%;
+        height: 30%;
+        padding: 5px 10px; }
+        .container .content .header .logo, .container .content .header .controls {
+          float: left;
+          display: inline-block; }
+        .container .content .header .controls {
+          display: block;
+          width: 100%;
+          height: 65px;
+          margin-left: 10px; }
+          .container .content .header .controls .dateStack, .container .content .header .controls .locationStack {
+            display: inline-block;
+            width: 49%;
+            overflow: hidden;
+            height: 25px;
+            margin: 3px 0; }
+          .container .content .header .controls .locationStack .location {
+            display: inline-block;
+            font-size: 12px;
+            margin-bottom: 9px;
+            cursor: pointer;
+            width: 45%;
+            line-height: 1.2em; }
+          .container .content .header .controls input[type='text'] {
+            width: 45%;
+            display: inline-block;
+            float: left;
+            margin-right: 3%; }
+          .container .content .header .controls ul {
+            display: inline-block;
+            width: 320px;
+            height: 44px;
+            padding: 0;
+            margin: 0; }
+          .container .content .header .controls ul li {
+            display: inline-block;
+            float: left;
+            margin-left: 5px;
+            width: 70px; }
+          .container .content .header .controls ul li:first-child {
+            margin-left: 0; }
+          .container .content .header .controls .icon {
+            display: block;
+            height: 25px;
+            width: 40px;
+            margin-bottom: 3px;
+            margin-left: 5px; }
+      .container .content .anchor {
+        font-size: 10px;
+        width: 100px;
+        height: 20px;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+        text-align: right; }
+        .container .content .anchor .twitter-share-button {
+          margin-bottom: 5px; }
+      .container .content .map-canvas {
+        height: 70%; }
+  .overlays .overlay {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px #cdcdcd solid;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center; }
+    .overlays .overlay .close {
+      float: right;
+      margin-top: -10px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer; } }
+
 .btn {
   display: block;
   -webkit-border-radius: 4px;

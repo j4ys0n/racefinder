@@ -61,7 +61,7 @@
 			if( e.keyCode === 13 ){
 				updateRaces();
 			}
-		})
+		});
 	});
 
 	w.c = c;

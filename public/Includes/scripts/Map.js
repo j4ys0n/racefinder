@@ -10,6 +10,7 @@
 			doc = $(document),
 			wdw = $(w),
 			html = $('html'),
+			mobile = false,
 			apiKey = 'AIzaSyAuS_AXBjFep-g23GTsUeFkNEeloKzAvmU',
 			geocoder = new google.maps.Geocoder(),
 			initMapCallback = function(){return false;},
@@ -48,9 +49,10 @@
 		self.combinedSelectors = {};
 		self.combinedSelectors.mapCanvas = $();
 
-		if( self.feature.test('touchend') ){
+		if( self.feature.test('orientation') ){
 			clickEvt = 'touchend';
 			scrollEvt = 'touchmove';
+			mobile = true;
 		} else {
 			clickEvt = 'click';
 			scrollEvt = 'scroll';
@@ -152,11 +154,15 @@
 		}
 
 		function initMap( callback ){
+			var delay = 750;
+			if( mobile ){
+				delay = 2000;
+			}
 			mapOptions.center = new google.maps.LatLng( userLat, userLng );
 			map = new google.maps.Map( doc.find( self.combinedSelectors.mapCanvas )[0], mapOptions );
 			setTimeout(function(){
 				callback();
-			}, 500);
+			}, delay);
 		}
 
 		function geocode( loc, callback ){

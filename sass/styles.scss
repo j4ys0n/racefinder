@@ -5,65 +5,65 @@
 }
 
 html, body {
-    background-color: #efefef;
-    color: #3b3b3b;
-    font-size: 16px;
-    font-family: 'Helvetica Neue', 'Helvetica', 'Sans-serif';
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    -webkit-text-size-adjust: none;
+	background-color: #efefef;
+	color: #3b3b3b;
+	font-size: 16px;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Sans-serif';
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-text-size-adjust: none;
 }
 
 * {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
 }
 ::-webkit-scrollbar {
 	width: 0 !important;
 }
 a {
-    color: #3b3b3b;
+	color: #3b3b3b;
 }
 a:hover {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 h1 {
-    color: #ffaa00;
+	color: #ffaa00;
 }
 
 .endPoint {
-    display: block;
-    width: 400px;
+	display: block;
+	width: 400px;
 }
 
 .container, .content, .map-canvas {
-    width: 100%;
+	width: 100%;
 }
 
 .admin.map-canvas {
-    height: 100%;
+	height: 100%;
 }
 
 .container {
-    height: 100%;
-    .content {
-        height: 100%;
-        .header {
-            background-color: #ffffff;
-            height: 7%;
-            min-height: 60px;
-            padding: 5px 10px;
-            .logo, .controls {
-                float: left;
-                display: inline-block;
-            }
-            .controls {
-                height: 65px;
-                margin-left: 10px;
+	height: 100%;
+	.content {
+		height: 100%;
+		.header {
+			background-color: #ffffff;
+			height: 7%;
+			min-height: 60px;
+			padding: 5px 10px;
+			.logo, .controls {
+				float: left;
+				display: inline-block;
+			}
+			.controls {
+				height: 65px;
+				margin-left: 10px;
 
 				.dateStack,
 				.locationStack {
@@ -81,93 +81,93 @@ h1 {
 					font-weight: bold;
 				}
 
-                input[type="text"] {
-                    display: block;
-                    @include roundedCorners( 5px );
-                    margin-bottom: 5px;
-                    border: 1px #cdcdcd solid;
-                    padding: 5px;
-                    width: 80px;
-                    height: 25px;
-                }
-                input[type="text"]:hover {
-                    border-color: #ff6700;
-                }
-                input[type="text"].disabled {
-                    background: #aaaaaa;
-                }
+				input[type="text"] {
+					display: block;
+					@include roundedCorners( 5px );
+					margin-bottom: 5px;
+					border: 1px #cdcdcd solid;
+					padding: 5px;
+					width: 80px;
+					height: 25px;
+				}
+				input[type="text"]:hover {
+					border-color: #ff6700;
+				}
+				input[type="text"].disabled {
+					background: #aaaaaa;
+				}
 
-                ul {
-                    display: inline-block;
-                    width: 320px;
-                    height: 44px;
-                    padding: 0;
-                    margin: 0;
-                }
-                ul li {
-                    display: inline-block;
-                    float: left;
-                    margin-left: 10px;
-                    width: 70px;
-                }
-                input[type="radio"] {
-                    display: none;
-                }
-                label {
-                    @include roundedCorners( 5px );
-                    border: 2px #cdcdcd solid;
-                    padding: 3px;
-                    display: block;
-                    width: 60px;
-                    text-align: center;
-                    font-size: 12px;
-                }
-                label:hover {
-                    border-color: #ff6700;
-                }
-                input[type="radio"]:checked + label {
-                    border-color: #ff6700;
-                }
+				ul {
+					display: inline-block;
+					width: 320px;
+					height: 44px;
+					padding: 0;
+					margin: 0;
+				}
+				ul li {
+					display: inline-block;
+					float: left;
+					margin-left: 10px;
+					width: 70px;
+				}
+				input[type="radio"] {
+					display: none;
+				}
+				label {
+					@include roundedCorners( 5px );
+					border: 2px #cdcdcd solid;
+					padding: 3px;
+					display: block;
+					width: 60px;
+					text-align: center;
+					font-size: 12px;
+				}
+				label:hover {
+					border-color: #ff6700;
+				}
+				input[type="radio"]:checked + label {
+					border-color: #ff6700;
+				}
 
-                .icon {
-                    display: block;
-                    height: 25px;
-                    width: 40px;
-                    margin-bottom: 3px;
-                    margin-left: 5px;
-                }
-                .icon.radio-road {
-                    background: url('../images/icon-radio-road.jpg') no-repeat center bottom;
-                }
-                .icon.radio-cx {
-                    background: url('../images/icon-radio-cx.jpg') no-repeat center bottom;
-                }
-                .icon.radio-mtb {
-                    background: url('../images/icon-radio-mtb.jpg') no-repeat center bottom;
-                }
-                .icon.radio-track {
-                    background: url('../images/icon-radio-track.jpg') no-repeat center bottom;
-                }
-            }
-        }
-        .anchor {
-            font-size: 10px;
-            width: 100px;
-            height: 20px;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 100;
-            text-align: right;
+				.icon {
+					display: block;
+					height: 25px;
+					width: 40px;
+					margin-bottom: 3px;
+					margin-left: 5px;
+				}
+				.icon.radio-road {
+					background: url('../images/icon-radio-road.jpg') no-repeat center bottom;
+				}
+				.icon.radio-cx {
+					background: url('../images/icon-radio-cx.jpg') no-repeat center bottom;
+				}
+				.icon.radio-mtb {
+					background: url('../images/icon-radio-mtb.jpg') no-repeat center bottom;
+				}
+				.icon.radio-track {
+					background: url('../images/icon-radio-track.jpg') no-repeat center bottom;
+				}
+			}
+		}
+		.anchor {
+			font-size: 10px;
+			width: 100px;
+			height: 20px;
+			position: fixed;
+			top: 10px;
+			right: 10px;
+			z-index: 100;
+			text-align: right;
 
-            .twitter-share-button {
-                margin-bottom: 5px;
-            }
-        }
-        .map-canvas {
-            height: 93%;
-        }
-    }
+			.twitter-share-button {
+				margin-bottom: 5px;
+			}
+		}
+		.map-canvas {
+			height: 93%;
+		}
+	}
 }
 
 .overlays {
@@ -206,6 +206,122 @@ h1 {
 
 		.btn {
 			width: 120px;
+		}
+	}
+}
+
+@media screen and ( max-width: 640px ){
+	.container {
+		width: 100%;
+		.content {
+			width: 100%;
+			overflow-x: hidden;
+			.header {
+				background-color: #ffffff;
+				width: 100%;
+				height: 30%;
+				padding: 5px 10px;
+				.logo, .controls {
+					float: left;
+					display: inline-block;
+				}
+				.controls {
+					display: block;
+					width: 100%;
+					height: 65px;
+					margin-left: 10px;
+
+					.dateStack,
+					.locationStack {
+						display: inline-block;
+						width: 49%;
+						overflow: hidden;
+						height: 25px;
+						margin: 3px 0;
+					}
+
+					.locationStack .location {
+						display: inline-block;
+						font-size: 12px;
+						margin-bottom: 9px;
+						cursor: pointer;
+						width: 45%;
+						line-height: 1.2em;
+					}
+
+					input[type='text'] {
+						width: 45%;
+						display: inline-block;
+						float: left;
+						margin-right: 3%;
+					}
+
+					ul {
+						display: inline-block;
+						width: 320px;
+						height: 44px;
+						padding: 0;
+						margin: 0;
+					}
+					ul li {
+						display: inline-block;
+						float: left;
+						margin-left: 5px;
+						width: 70px;
+					}
+					ul li:first-child {
+						margin-left: 0;
+					}
+
+					.icon {
+						display: block;
+						height: 25px;
+						width: 40px;
+						margin-bottom: 3px;
+						margin-left: 5px;
+					}
+				}
+			}
+			.anchor {
+				font-size: 10px;
+				width: 100px;
+				height: 20px;
+				position: fixed;
+				top: 10px;
+				right: 10px;
+				z-index: 100;
+				text-align: right;
+
+				.twitter-share-button {
+					margin-bottom: 5px;
+				}
+			}
+			.map-canvas {
+				height: 70%;
+			}
+		}
+	}
+	.overlays {
+		.overlay {
+			position: absolute;
+			top: 40%;
+			left: 0;
+			display: none;
+			width: 100%;
+			margin: 0;
+			padding: 10px;
+			background-color: #ffffff;
+			border: 1px #cdcdcd solid;
+			@include roundedCorners( 4px );
+			text-align: center;
+
+			.close {
+				float: right;
+				margin-top: -10px;
+				font-size: 20px;
+				font-weight: bold;
+				cursor: pointer;
+			}
 		}
 	}
 }
