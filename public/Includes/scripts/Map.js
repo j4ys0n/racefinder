@@ -72,7 +72,7 @@
 		}
 
 		function addMarker( x ){
-			var draggable = true;
+			var draggable = false;
 			var updateGeo = false;
 			var icon = {
 				path: svgMarker1,
