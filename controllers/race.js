@@ -100,6 +100,23 @@ module.exports = {
         });
     },
 
+    findRacesByDistanceAndStatus: function( req, res ){
+        var s = decodeURIComponent( req.params.status ),
+            d = decodeURIComponent( req.params.dist ),
+            lat = decodeURIComponent( req.params.lat ),
+            lng = decodeURIComponent( req.params.lng );
+        Race.find( { 'status': s,
+                     'coords': { $near:
+                         { $geometry: {
+                             type: 'Point',
+                             coordinates: [ lng, lat ]
+                         }, $maxDistance: d }
+                     } } )
+            .exec( function( err, race ){
+            res.json( Response.code( err, race ), Response.data( err, race ) );
+        });
+    },
+
     updateRace: function( req, res ){
         var id = decodeURIComponent( req.params.id );
         var updates = {
@@ -131,6 +148,13 @@ module.exports = {
         var id = decodeURIComponent( req.params.id );
         Race.findOneAndRemove( { _id: id }, function( err, race ){
             res.json( Response.code( err, race ), Response.data( err, race ) );
+        });
+    },
+
+    deleteRacesByStatus: function( req, res ){
+        var status = decodeURIComponent( req.params.status );
+        Race.remove( { 'status': status }, function( err, race ){
+            res.json( Response.code( err, race), Response.data( err, race ) );
         });
     },
 

@@ -8,7 +8,7 @@ var race = require( __dirname + '/../controllers/race' );
 
 module.exports = function(app) {
   //app.put( '/api/race', race.createRace );
-  //app.put( '/api/races', race.createRaces );
+  app.put( '/api/races', race.createRaces );
   app.get( '/api/race/link/:link', race.findRaceByLink );
   app.get( '/api/race/:id', race.readRace );
   //app.post( '/api/race/:id', race.updateRace );
@@ -17,7 +17,9 @@ module.exports = function(app) {
   app.get( '/api/races/type/:type', race.findRacesByType );
   app.get( '/api/races/date/:type/:start/:end', race.findRacesByDates );
   app.get( '/api/races/dist/:type/:start/:end/:dist/:lat/:lng', race.findRacesByDistance );
+  app.get( '/api/races/ds/:status/:dist/:lat/:lng', race.findRacesByDistanceAndStatus );
   app.get( '/api/races', race.readRaces );
+  //app.del( '/api/races/status/:status', race.deleteRacesByStatus );
   //app.del( '/api/races', race.deleteAllRaces );
 
   //special
