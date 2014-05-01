@@ -19,14 +19,10 @@
 	function updateRaces(){
 		var s = encodeURIComponent($('.dateStart').val()),
 			e = encodeURIComponent($('.dateEnd').val()),
-			t = $('ul.race-type input[type="radio"]:checked').val(),
-			d = parseInt( $('.distance').val(), 10);
-			if( d === 0 || isNaN(d) || d === null || d === undefined ){
-				d = 50;
-			}
+			t = $('ul.race-type input[type="radio"]:checked').val();
 
 		c.m.removeMarkers();
-		c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e, t, d );
+		c.m.getRaces( '/api/races/date/'+t+'/'+s+'/'+e, t );
 	}
 
 	c.addAction( 'getRaces', function( params ){
@@ -35,21 +31,19 @@
 
 	doc.ready(function(){
 		c.m.init( updateRaces );
-		c.s.init( 'http://bikereg.com' );
-	});
 
-	//listening
-	//things that are clicked
-	$('.ask-server').on('click', function( e ){
-		e.preventDefault();
-		$(this).callAction();
-	});
-	//things that loads and request ajax immediately on page load.
-	$(window).on('load', function(){
-		var onLoadClass = $('.on-load-ask-server');
-		if( onLoadClass.length ){
-			$( this.document.body ).callAction();
+		if( String( window.location.href ).indexOf( 'admin' ) > -1 ){
+			//c.s.init( 'http://bikereg.com' );
+			c.s.init( 'http://'+doc.find( '.providerSelect option:selected' ).text() );
+			console.log( 'http://'+doc.find( '.providerSelect option:selected' ).text() );
+			console.log( c.s.site );
+			doc.find( '.providerSelect' ).on( 'change', function( e ){
+				c.s.init( 'http://'+doc.find( '.providerSelect option:selected' ).text() );
+				console.log( 'http://'+doc.find( '.providerSelect option:selected' ).text() );
+				console.log( c.s.site );
+			});
 		}
+
 		var dt = new Date();
 		doc.find('.dateStart').val( (dt.getMonth()+1)+'/'+dt.getDate()+'/'+(dt.getYear()+1900)  );
 		doc.find('.dateEnd').val( (dt.getMonth()+2)+'/'+dt.getDate()+'/'+(dt.getYear()+1900) );
@@ -66,6 +60,20 @@
 				updateRaces();
 			}
 		});
+	});
+
+	//listening
+	//things that are clicked
+	$('.ask-server').on('click', function( e ){
+		e.preventDefault();
+		$(this).callAction();
+	});
+	//things that loads and request ajax immediately on page load.
+	$(window).on('load', function(){
+		var onLoadClass = $('.on-load-ask-server');
+		if( onLoadClass.length ){
+			$( this.document.body ).callAction();
+		}
 	});
 
 	w.c = c;

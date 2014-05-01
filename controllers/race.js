@@ -95,6 +95,7 @@ module.exports = {
                              coordinates: [ lng, lat ]
                          }, $maxDistance: d }
                      } } )
+            .sort( { 'coords': 'asc' })
             .exec( function( err, race ){
             res.json( Response.code( err, race ), Response.data( err, race ) );
         });

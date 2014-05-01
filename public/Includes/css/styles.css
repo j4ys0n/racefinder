@@ -59,13 +59,13 @@ h1 {
         .container .content .header .controls .locationStack {
           margin-top: 5px;
           margin-left: 10px; }
-          .container .content .header .controls .locationStack .location {
+          .container .content .header .controls .locationStack .location, .container .content .header .controls .locationStack .changeLocation {
             display: block;
             font-size: 12px;
-            margin-bottom: 9px;
+            margin-bottom: 9px; }
+          .container .content .header .controls .locationStack .changeLocation {
+            margin-top: 5px;
             cursor: pointer; }
-        .container .content .header .controls .locationStack .location:hover {
-          font-weight: bold; }
         .container .content .header .controls input[type="text"] {
           display: block;
           -webkit-border-radius: 5px;
@@ -133,7 +133,7 @@ h1 {
       .container .content .anchor .twitter-share-button {
         margin-bottom: 5px; }
     .container .content .map-canvas {
-      height: 93%; }
+      height: 91%; }
 
 .overlays .overlay {
   position: absolute;
@@ -196,13 +196,14 @@ h1 {
             float: none;
             height: 25px;
             margin: 3px 0; }
-          .container .content .header .controls .locationStack .location {
+          .container .content .header .controls .locationStack .location, .container .content .header .controls .locationStack .changeLocation {
             display: inline-block;
             font-size: 12px;
             margin-bottom: 9px;
-            cursor: pointer;
             width: 45%;
             line-height: 1.2em; }
+          .container .content .header .controls .locationStack .changeLocation {
+            cursor: pointer; }
           .container .content .header .controls input[type='text'] {
             width: 45%;
             display: inline-block;
