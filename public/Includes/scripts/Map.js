@@ -137,7 +137,22 @@
 			markers.push( marker );
 		}
 
+		function spreadCluster( x ){
+			var rndmLat, rndmLng, i = 0;
+			for( i; i < x.length; i++ ){
+				rndmLat = Math.random()/1000;
+				rndmLng = Math.random()/1000;
+				x[i].coords[1] += rndmLat;
+				x[i].coords[0] += rndmLng;
+				addMarker( x[i] );
+			}
+		}
+
 		function addClusterMarker( x ){
+			if( map.getZoom() > 14 && x.length > 2 ){
+				spreadCluster( x );
+				return false;
+			}
 			var name = String(x.length)+' races near this location',
 				markerInfo = '',
 				dt,
