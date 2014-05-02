@@ -1,5 +1,5 @@
 html, body {
-  background-color: #efefef;
+  background-color: #ffffff;
   color: #3b3b3b;
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Helvetica', 'Sans-serif';
@@ -133,7 +133,7 @@ h1 {
       .container .content .anchor .twitter-share-button {
         margin-bottom: 5px; }
     .container .content .map-canvas {
-      height: 91%; }
+      height: 91.5%; }
 
 .overlays .overlay {
   position: absolute;
@@ -183,6 +183,8 @@ h1 {
         .container .content .header .logo, .container .content .header .controls {
           float: left;
           display: inline-block; }
+        .container .content .header .logo {
+          height: 45px; }
         .container .content .header .controls {
           display: block;
           width: 100%;
@@ -192,10 +194,12 @@ h1 {
           .container .content .header .controls .dateStack, .container .content .header .controls .locationStack {
             display: inline-block;
             width: 49%;
-            overflow: hidden;
             float: none;
-            height: 25px;
+            height: 30px;
             margin: 3px 0; }
+          .container .content .header .controls .locatinStack {
+            height: 35px;
+            margin-top: -5px; }
           .container .content .header .controls .locationStack .location, .container .content .header .controls .locationStack .changeLocation {
             display: inline-block;
             font-size: 12px;

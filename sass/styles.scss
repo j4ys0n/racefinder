@@ -5,7 +5,7 @@
 }
 
 html, body {
-	background-color: #efefef;
+	background-color: #ffffff;
 	color: #3b3b3b;
 	font-size: 16px;
 	font-family: 'Helvetica Neue', 'Helvetica', 'Sans-serif';
@@ -173,7 +173,7 @@ h1 {
 			}
 		}
 		.map-canvas {
-			height: 91%;
+			height: 91.5%;
 		}
 	}
 }
@@ -233,6 +233,11 @@ h1 {
 					float: left;
 					display: inline-block;
 				}
+
+				.logo {
+					height: 45px;
+				}
+
 				.controls {
 					display: block;
 					width: 100%;
@@ -244,10 +249,15 @@ h1 {
 					.locationStack {
 						display: inline-block;
 						width: 49%;
-						overflow: hidden;
+						//overflow: hidden;
 						float: none;
-						height: 25px;
+						height: 30px;
 						margin: 3px 0;
+					}
+
+					.locatinStack {
+						height: 35px;
+						margin-top: -5px;
 					}
 
 					.locationStack .location,
