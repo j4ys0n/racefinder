@@ -170,7 +170,7 @@
 				}
 			}
 			if( x.length > 2 ){
-				markerInfo += '<div><h4 style="display: inline-block;">'+String(x.length)+' races ner here. Zoom for more</h4></div>';
+				markerInfo += '<div><h4 style="display: inline-block;">'+String(x.length)+' races near here. Zoom for more</h4></div>';
 			}
 			avgLat = avgLat/x.length;
 			avgLng = avgLng/x.length;
@@ -242,8 +242,6 @@
 				milesPerMarker = ( oOptions.markerSize * oOptions.markerScaleCluster ) / mapInfo.pixelsPerMile,
 				clusters = [],
 				i = 0;
-			//console.log( mapInfo );
-			//console.log( milesPerMarker );
 			for( i; i < races.length; i++ ){
 				if( races[i].clustered === undefined || races[i].clustered === false ){
 					var cluster = [],
@@ -271,8 +269,6 @@
 					}
 				}
 			}
-			//console.log( races );
-			//console.log( clusters );
 			addRaces( clusters );
 
 		}
@@ -285,7 +281,7 @@
 				userLng = center.lng();
 				var s = encodeURIComponent($('.dateStart').val()),
 					e = encodeURIComponent($('.dateEnd').val());
-				getRaces( '/api/races/date/'+raceType+'/'+s+'/'+e, raceType )
+				getRaces( '/api/races/date/'+raceType+'/'+s+'/'+e, raceType );
 			} );
 			refreshMarkers();
 		}
