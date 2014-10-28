@@ -7,6 +7,9 @@ var race = require( __dirname + '/../controllers/race' );
 //var stubs = require(process.cwd() + '/controllers/stubs');
 
 module.exports = function(app) {
+  app.get( '/letter-to-crca', function( req, res ){
+     res.render( 'crca' ); 
+  });
   //app.put( '/api/race', race.createRace );
   //app.put( '/api/races', race.createRaces );
   app.get( '/api/race/link/:link', race.findRaceByLink );
