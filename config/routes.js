@@ -7,11 +7,8 @@ var race = require( __dirname + '/../controllers/race' );
 //var stubs = require(process.cwd() + '/controllers/stubs');
 
 module.exports = function(app) {
-  app.get( '/letter-to-crca', function( req, res ){
-     res.render( 'crca' ); 
-  });
-  //app.put( '/api/race', race.createRace );
-  //app.put( '/api/races', race.createRaces );
+  app.put( '/api/race', race.createRace );
+  app.put( '/api/races', race.createRaces );
   app.get( '/api/race/link/:link', race.findRaceByLink );
   app.get( '/api/race/:id', race.readRace );
   //app.post( '/api/race/:id', race.updateRace );
@@ -31,9 +28,9 @@ module.exports = function(app) {
 
  // app.get( '/scraper/races', scraper.getRaces );
 
-  // app.get( '/admin', function( req, res ){
-  //     res.render( 'admin' );
-  // });
+  //app.get( '/admin', function( req, res ){
+//       res.render( 'admin' );
+  //});
   app.get( '/', function( req, res ){
       res.render( 'index' );
   });
