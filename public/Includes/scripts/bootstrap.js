@@ -46,7 +46,7 @@
 
 		var dt = new Date();
 		doc.find('.dateStart').val( (dt.getMonth()+1)+'/'+dt.getDate()+'/'+(dt.getYear()+1900)  );
-		doc.find('.dateEnd').val( (dt.getMonth()+2)+'/'+dt.getDate()+'/'+(dt.getYear()+1900) );
+		doc.find('.dateEnd').val( (dt.getMonth()+3)+'/'+dt.getDate()+'/'+(dt.getYear()+1900) );
 		doc.find('.datePicker').datepicker();
 
 		doc.find('.dateStart, .dateEnd').on('change', function( e ){
