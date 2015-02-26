@@ -21,7 +21,7 @@ module.exports = function(app) {
   app.get( '/api/races/ds/:status/:dist/:lat/:lng', race.findRacesByDistanceAndStatus );
   app.get( '/api/races', race.readRaces );
   //app.del( '/api/races/status/:status', race.deleteRacesByStatus );
-  app.del( '/api/races', race.deleteAllRaces );
+  //app.del( '/api/races', race.deleteAllRaces );
 
   //special
   //app.post( '/api/special/addloc', race.addLoc );
@@ -29,9 +29,9 @@ module.exports = function(app) {
 
  // app.get( '/scraper/races', scraper.getRaces );
 
-  app.get( '/admin', function( req, res ){
-       res.render( 'admin' );
-  });
+  // app.get( '/admin', function( req, res ){
+  //      res.render( 'admin' );
+  // });
   app.get( '/', function( req, res ){
       res.render( 'index' );
   });
