@@ -43,7 +43,7 @@ module.exports = {
         var page = decodeURIComponent( req.params.page );
         var limit = 20;
         var offset = ( page - 1 ) * limit;
-
+        console.log(new Date());
         Race.find({ 'race_date': { '$gte': new Date() } })
             //.skip( offset )
             //.limit( limit )
@@ -54,7 +54,7 @@ module.exports = {
 
     findRacesByStatus: function( req, res ){
         var status = decodeURIComponent( req.params.status );
-        Race.find( { 'status': status } ).exec( function( err, race ){
+        Race.find( { 'status': status, 'race_date': { '$gte': new Date() } } ).exec( function( err, race ){
             res.json( Response.code( err, race ), Response.data( err, race ) );
         });
     },
@@ -62,6 +62,15 @@ module.exports = {
     findRacesByType: function( req, res ){
         var t = decodeURIComponent( req.params.type );
         Race.find( { 'race_type': t, 'race_date': { '$gte': new Date() } } )
+            .exec( function( err, race ){
+            res.json( Response.code( err, race ), Response.data( err, race ) );
+        });
+    },
+
+    findRacesByTypeAndStatus: function( req, res ){
+        var t = decodeURIComponent( req.params.type ),
+            s = decodeURIComponent( req.params.status );
+        Race.find( { 'race_type': t, 'status': s, 'race_date': { '$gte': new Date() } } )
             .exec( function( err, race ){
             res.json( Response.code( err, race ), Response.data( err, race ) );
         });

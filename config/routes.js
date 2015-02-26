@@ -15,12 +15,13 @@ module.exports = function(app) {
   //app.del( '/api/race/:id', race.deleteRace );
   app.get( '/api/races/status/:status', race.findRacesByStatus );
   app.get( '/api/races/type/:type', race.findRacesByType );
+  app.get( '/api/races/typeandstatus/:type/:status', race.findRacesByTypeAndStatus );
   app.get( '/api/races/date/:type/:start/:end', race.findRacesByDates );
   app.get( '/api/races/dist/:type/:start/:end/:dist/:lat/:lng', race.findRacesByDistance );
   app.get( '/api/races/ds/:status/:dist/:lat/:lng', race.findRacesByDistanceAndStatus );
   app.get( '/api/races', race.readRaces );
   //app.del( '/api/races/status/:status', race.deleteRacesByStatus );
-  //app.del( '/api/races', race.deleteAllRaces );
+  app.del( '/api/races', race.deleteAllRaces );
 
   //special
   //app.post( '/api/special/addloc', race.addLoc );
@@ -28,9 +29,9 @@ module.exports = function(app) {
 
  // app.get( '/scraper/races', scraper.getRaces );
 
-  //app.get( '/admin', function( req, res ){
-//       res.render( 'admin' );
-  //});
+  app.get( '/admin', function( req, res ){
+       res.render( 'admin' );
+  });
   app.get( '/', function( req, res ){
       res.render( 'index' );
   });
